@@ -9,7 +9,7 @@ namespace SocialSecurityNumber_2
         {
             string socialSecurityNumber = FetchSocialSecurityNumber(args);
 
-            string gender = GetGender(socialSecurityNumber);
+            Gender gender = GetGender(socialSecurityNumber);
 
             int age = CalculateAge(socialSecurityNumber);
 
@@ -53,24 +53,30 @@ namespace SocialSecurityNumber_2
             return age;
         }
 
-        private static string GetGender(string socialSecurityNumber)
+        private static Gender GetGender(string socialSecurityNumber)
         {
             string genderNumberString = socialSecurityNumber.Substring(socialSecurityNumber.Length - 2, 1);
 
             int genderNumber = int.Parse(genderNumberString);
 
-            string gender;
+            Gender gender;
 
             if (genderNumber % 2 == 0) // True/false  (Boolean)
             {
-                gender = "Female";
+                gender = Gender.Female;
             }
             else
             {
-                gender = "Male";
+                gender = Gender.Male;
             }
 
             return gender;
         }
+    }
+
+    enum Gender
+    {
+        Female,
+        Male
     }
 }
